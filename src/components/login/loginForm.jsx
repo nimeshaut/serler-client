@@ -22,21 +22,14 @@ class LoginForm extends Form {
       .label("Password")
   };
 
-  // componentDidMount(){
-  //   const user = auth.getCurrentUser();
-  //   console.log("Current user info");
-  //   console.log(user);
-  // }
+ 
   doSubmit = async () => {
     // Call the server
     try {
       const { data } = this.state;
       await auth.login(data.email, data.password);
       this.setState({redirectToReferer: true});
-      // if (user.role === "Admin") window.location = "/admin/dashboard";
-      // if (user.role === "Analyzer") window.location = "/analyst/dashboard";
-      // if (user.role === "Moderator") window.location = "/moderator/dashboard";
-      //window.location = "/user/dashboard";
+     
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };

@@ -19,17 +19,13 @@ const NavBar = ({ user }) => {
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
-        <NavLink className="nav-link" to="/">
-          Home <span className="sr-only">(current)</span>
-        </NavLink>
-
-        <NavLink className="nav-link" to="/search">
-          Search
-        </NavLink>
         {user && user.role === "Analyzer" && (
           <React.Fragment>
             <NavLink className="nav-link" to="/analyst/dashboard">
               Dashboard
+            </NavLink>
+            <NavLink className="nav-link" to="/search">
+              Search
             </NavLink>
             <NavLink className="nav-link" to="/analyst/queue">
               Analyzer Queue
@@ -41,6 +37,9 @@ const NavBar = ({ user }) => {
             <NavLink className="nav-link" to="/moderator/dashboard">
               Dashboard
             </NavLink>
+            <NavLink className="nav-link" to="/search">
+              Search
+            </NavLink>
             <NavLink className="nav-link" to="/moderator/queue">
               Moderator Queue
             </NavLink>
@@ -50,6 +49,9 @@ const NavBar = ({ user }) => {
           <React.Fragment>
             <NavLink className="nav-link" to="/admin/dashboard">
               Dashboard
+            </NavLink>
+            <NavLink className="nav-link" to="/search">
+              Search
             </NavLink>
             <NavLink className="nav-link" to="/admin/users">
               Users
@@ -62,29 +64,29 @@ const NavBar = ({ user }) => {
             </NavLink>
           </React.Fragment>
         )}
-        {user && user.role === "User" && (
-          <React.Fragment>
-            <NavLink className="nav-link" to="/user/dashboard">
-              Dashboard
-            </NavLink>
-            
-          </React.Fragment>
-        )}
 
         {!user && (
           <React.Fragment>
+            <NavLink className="nav-link" to="/search">
+              Search
+            </NavLink>
             <NavLink className="nav-link" to="/login">
               Login
             </NavLink>
-            <NavLink className="nav-link" to="/register">
+            {/* <NavLink className="nav-link" to="/register">
               Register
-            </NavLink>
+            </NavLink> */}
           </React.Fragment>
         )}
 
         {user && (
           <React.Fragment>
-            
+            <NavLink className="nav-link" to="/user/dashboard">
+              Dashboard
+            </NavLink>
+            <NavLink className="nav-link" to="/search">
+              Search
+            </NavLink>
             <NavLink className="nav-link" to="/me">
               {user.name}
             </NavLink>

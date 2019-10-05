@@ -11,16 +11,16 @@ class Search extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="container-fluid" style={{ border: "solid blue" }}>
+        
           <div className="row">
-              <div className="col-xl2">
+              <div className="col-xl4">
                   <SearchForm></SearchForm>
               </div>
-              <div>
+              <div  className="col-xl8">
                   <SearchResults></SearchResults>
               </div>
           </div>
-        </div>
+        
       </React.Fragment>
     );
   }
