@@ -6,16 +6,15 @@ import { ToastContainer } from "react-toastify";
 class SearchForm extends Form {
   state = {
     data: {
-      search: ""
+      searchString: ""
     },
     genders: [],
     roles: [],
     errors: {}
   };
   schema = {
-    search: Joi.string()
-      .required()
-      .label("Search"),
+    searchString: Joi.string().allow('')
+      .label("Search String"),
     dateFrom: Joi.date(),
     dateTo: Joi.date()
   };
@@ -29,7 +28,7 @@ class SearchForm extends Form {
       <div className="col-3" style={{ border: "solid red" }}>
         <h1>Search Form</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput("search", "Search")}
+          {this.renderInput("searchString", "Search")}
           <hr />
           Date Range 
           <div className="form-inline mb-2">
@@ -39,6 +38,9 @@ class SearchForm extends Form {
             {this.renderSimpleInput("dateTo", "To", "date")}
             <hr />
           </div>
+          
+          <i className="fa fa-plus-circle btn btn-primary" style={{cursor:"pointer"}}></i>
+          <br />
           {this.renderButton("Search")}
         </form>
       </div>
