@@ -5,7 +5,7 @@ class SearchResults extends Component {
   render() {
     return (
       <React.Fragment>
-        <div style={{ border: "solid orange" }}>
+        <div className="col-8" style={{ border: "solid orange" }}>
           Search Results
           <table>
             <thead>

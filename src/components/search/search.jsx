@@ -8,19 +8,18 @@ class Search extends Component {
     mongoDbQuery: "",
     humanQuery: ""
   };
+
+  componentDidMount() {
+    
+  }
   render() {
     return (
       <React.Fragment>
-        
-          <div className="row">
-              <div className="col-xl4">
-                  <SearchForm></SearchForm>
-              </div>
-              <div  className="col-xl8">
-                  <SearchResults></SearchResults>
-              </div>
-          </div>
-        
+        <div className="row">
+          <SearchForm></SearchForm>
+
+          <SearchResults></SearchResults>
+        </div>
       </React.Fragment>
     );
   }
