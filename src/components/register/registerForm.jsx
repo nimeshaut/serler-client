@@ -40,12 +40,12 @@ class RegisterForm extends Form {
     // Call the server
     try{
       const response = await userService.register(this.state.data);
-      auth.loginWithJwt(response.data.headers['x-auth-token']);
+      auth.loginWithJwt(response.headers['x-auth-token']);
       
-      window.location="/user";;
+      window.location="/user/dashboard";;
     }
     catch(ex){
-     
+      debugger;
       if (ex.response && ex.response.status === 404)
         toast.error("This user has already been deleted");
       if (ex.response && ex.response.status === 401)

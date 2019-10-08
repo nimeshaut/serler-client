@@ -45,7 +45,7 @@ class App extends Component {
       <React.Fragment>
         <ToastContainer />
         <NavBar user={user} />
-        <main className="container">
+        <main className="container-fluid">
           <Switch>
             <Route path="/login" component={LoginForm}></Route>
             <Route path="/logout" component={Logout}></Route>
