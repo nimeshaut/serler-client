@@ -1,23 +1,29 @@
 import React, { Component } from "react";
 import SearchForm from "./searchForm";
 import SearchResults from "./searchResults";
+import { getSearchFields } from './../../services/searchFieldService';
+
+import './search.css';
 
 class Search extends Component {
   state = {
     searchText: "",
     mongoDbQuery: "",
-    humanQuery: ""
+    humanQuery: "",
+    searchFields:[{}]
   };
 
-  componentDidMount() {
-    
+  async componentDidMount(){
+    const searchFields = await getSearchFields();
+    this.setState({searchFields});
+    //console.log("Search fields fetched is", searchFields);
   }
+  
   render() {
     return (
       <React.Fragment>
         <div className="row">
-          <SearchForm></SearchForm>
-
+          <SearchForm searchFields={this.state.searchFields}></SearchForm>
           <SearchResults></SearchResults>
         </div>
       </React.Fragment>

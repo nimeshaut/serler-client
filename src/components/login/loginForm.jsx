@@ -1,7 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import { Redirect } from 'react-router-dom';
-
+import { Link, NavLink } from "react-router-dom";
 import Form from "../common/form";
 import auth from "../../services/authService";
 
@@ -63,6 +63,10 @@ class LoginForm extends Form {
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Login")}
         </form>
+        <hr/>
+        Don't have account ? you can <NavLink className="nav-link" to="/register">
+              Register
+            </NavLink> here.
       </React.Fragment>
     );
   }
