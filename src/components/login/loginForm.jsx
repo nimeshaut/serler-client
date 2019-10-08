@@ -1,7 +1,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import { Redirect } from 'react-router-dom';
-
+import { Link, NavLink } from "react-router-dom";
 import Form from "../common/form";
 import auth from "../../services/authService";
 
@@ -22,21 +22,14 @@ class LoginForm extends Form {
       .label("Password")
   };
 
-  // componentDidMount(){
-  //   const user = auth.getCurrentUser();
-  //   console.log("Current user info");
-  //   console.log(user);
-  // }
+ 
   doSubmit = async () => {
     // Call the server
     try {
       const { data } = this.state;
       await auth.login(data.email, data.password);
       this.setState({redirectToReferer: true});
-      // if (user.role === "Admin") window.location = "/admin/dashboard";
-      // if (user.role === "Analyzer") window.location = "/analyst/dashboard";
-      // if (user.role === "Moderator") window.location = "/moderator/dashboard";
-      //window.location = "/user/dashboard";
+     
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -70,6 +63,10 @@ class LoginForm extends Form {
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Login")}
         </form>
+        <hr/>
+        Don't have account ? you can <NavLink className="nav-link" to="/register">
+              Register
+            </NavLink> here.
       </React.Fragment>
     );
   }

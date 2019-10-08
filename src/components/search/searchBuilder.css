@@ -1,0 +1,16 @@
+.searchBuilder {
+    padding: 8px;
+  }
+  .question {
+    margin: 4px 0;
+  }
+  .callToAction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+  }
+  .callToAction > button {
+    display: flex;
+    margin: 0 8px;
+  }
