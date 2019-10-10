@@ -86,7 +86,7 @@ class SearchForm extends Component {
     //console.log(this.props);
   }
   render() {
-    console.log("search fields from parent", this.props.searchFields);
+    // console.log("search fields from parent", this.props.searchFields);
     return (
       <div className="col-3" style={{ border: "solid red" }}>
         <h1>Search Form</h1>
