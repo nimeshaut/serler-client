@@ -35,14 +35,15 @@ class App extends Component {
 
   componentDidMount() {
     const user = auth.getCurrentUser();
-    console.log("Current user info");
-    // console.log(user);
     this.setState({ user });
   }
   render() {
     const { user } = this.state;
+    
     return (
+      
       <React.Fragment>
+      
         <ToastContainer />
         <NavBar user={user} />
         <main className="container-fluid">

@@ -64,7 +64,7 @@ class LoginForm extends Form {
           {this.renderButton("Login")}
         </form>
         <hr/>
-        Don't have account ? you can <NavLink className="nav-link" to="/register">
+        Don't have account? you can <NavLink className="nav-link" to="/register">
               Register
             </NavLink> here.
       </React.Fragment>

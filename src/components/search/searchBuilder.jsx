@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 
-import searchOperation, { findOperationsForType } from "./searchOperation";
+import searchOperation, { findOperationsForType, findMongoOperationsForType } from "./searchOperation";
 
 import "./searchBuilder.css";
+import { debug } from "util";
 
 const searchableFields = [
-  { title: "Article title", operations: findOperationsForType("string") },
-  { title: "Article source", operations: findOperationsForType("string") },
-  { title: "Author", operations: findOperationsForType("string") },
-  { title: "Number search", operations: findOperationsForType("number") },
-  { title: "Boolean search", operations: findOperationsForType("boolean") }
+  { title: "Article title", operations: findOperationsForType("string"), operationsMongo: findMongoOperationsForType("string") },
+  { title: "Tag", operations: findOperationsForType("string"), operationsMongo: findMongoOperationsForType("string") },
+  { title: "Author", operations: findOperationsForType("string"), operationsMongo: findMongoOperationsForType("string") },
+  // { title: "Number search", operations: findOperationsForType("number") },
+  //{ title: "Boolean search", operations: findOperationsForType("boolean"), operationsMongo: findMongoOperationsForType("boolean") }
 ];
 
 function SearchBuilder(props) {
   const [selectedField, setSelectedField] = useState({ title: "" });
   const [selectedOperation, setSelectedOperation] = useState("");
+  const [selectedOperationMongo, setSelectedOperationMongo] = useState("");
   const [operand, setOperand] = useState(null);
 
   const clear = () => {
     setSelectedField({ title: "" });
     setSelectedOperation("");
+    setSelectedOperationMongo("")
     setOperand(null);
   };
   const onSelectField = event => {
@@ -30,13 +33,17 @@ function SearchBuilder(props) {
     if (nextSelectedField) {
       setSelectedField(nextSelectedField);
       setSelectedOperation("");
+      setSelectedOperationMongo("");
     }
   };
   const onSelectOperation = event => {
+    debugger;
     const nextSelectedOperation = event.target.value;
     // Confirm validity.
     if (selectedField.operations.includes(nextSelectedOperation)) {
+      const index = selectedField.operations.indexOf(nextSelectedOperation);
       setSelectedOperation(nextSelectedOperation);
+      setSelectedOperationMongo(selectedField.operationsMongo[index]);
       if (nextSelectedOperation === "between") {
         setOperand({ from: "", to: "" });
       }
@@ -46,6 +53,7 @@ function SearchBuilder(props) {
     props.onAdd(combineUsing, {
       field: selectedField.title,
       operation: selectedOperation,
+      operationMongo: selectedOperationMongo,
       operand
     });
     clear();
