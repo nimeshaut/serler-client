@@ -1,0 +1,51 @@
+@uri=http://localhost:8080/api/
+@remote_url=https://serler-api-grp5.herokuapp.com/api/
+
+### 先添加角色对象 Admin Analyzer Moderator User 还有一个管理员
+POST {{uri}}roles
+Content-Type: application/json
+
+{
+    "name": "Moderator"
+}
+
+
+### 查询Admin信息，记住它的_id
+GET {{uri}}roles/
+
+###
+GET {{uri}}genders
+
+### 添加性别信息
+POST {{uri}}genders
+Content-Type: application/json
+
+{
+    "name": "Female"
+}
+
+### 
+
+### query all user information
+GET {{uri}}users
+
+### Admin: admin2019@sina.com admin2019
+### User : tom@sina.com tom123456 
+### Analyzer: jack@sina.com jack123456
+### Moderator: tomas@sina.com tomas123456
+POST {{uri}}users
+Content-Type: application/json
+
+{
+    "email": "tomas@sina.com",
+    "genderId": "5da5ce6f35c26a13cc1100c8",
+    "name": "tomas2019",
+    "password": "tomas123456"
+}
+
+### get roles information
+GET {{uri}}roles
+
+###get genders information
+GET {{uri}}genders
+

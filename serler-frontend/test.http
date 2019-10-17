@@ -1,0 +1,94 @@
+@uri=http://localhost:8080/api/
+@remote_url=https://serler-api-grp5.herokuapp.com/api/
+
+### query all user information
+GET {{uri}}users
+
+###
+POST {{uri}}users
+Content-Type: application/json
+
+{
+    "email": "406507191@qq.com",
+    "genderId": "5da0a88eadb7840f042e1eb7",
+    "name": "James",
+    "password": "james123456"
+}
+
+### get roles information
+GET {{uri}}roles
+
+###get genders information
+GET {{uri}}genders
+
+### add status information
+POST {{uri}}status
+Content-Type: application/json
+
+{
+    "name": "teststatus"
+}
+
+### query all the status information
+GET {{uri}}status
+
+### query status by id
+GET {{uri}}status/5da1519e0015ba0eae7095d0
+
+### update status informatino
+PUT {{uri}}status/5da1478f0015ba0eae7095cf
+Content-Type: application/json
+
+{
+    "name": "reject"
+}
+
+### delete status by id
+DELETE {{uri}}status/5da1478f0015ba0eae7095cf
+
+
+
+
+#### article test
+### query all the articles
+GET {{uri}}articles
+
+
+### query article according to the id
+GET {{uri}}articles/5da17b6725b1d415509e3cc2
+
+### add a new article
+POST {{uri}}articles
+Content-Type: application/json
+
+{
+    "title": "Test title",
+    "content": "test content",
+    "submitter": "5da132c5a0c19f08e4e58fa8",
+    "tags": "test"
+}
+
+### condition query
+POST {{uri}}articles/condition/query
+Content-Type: application/json
+
+{
+    "title": "React",
+    "tags": "react;agile development",
+    "submitter": "james"
+}
+
+### update article
+PUT {{uri}}articles/5da17b6725b1d415509e3cc2
+Content-Type: application/json
+
+{
+    "title": "The React base",
+    "status": "5da147770015ba0eae7095cc",
+    "moderator": {
+        "name": "5da0ac35adb7840f042e1eba"
+    }
+}
+
+### delete article according to the id
+DELETE {{uri}}articles/5da17f689dde701621f23b60
