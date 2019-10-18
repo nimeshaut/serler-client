@@ -72,7 +72,10 @@ const NavBar = ({ user }) => {
             <NavLink className="nav-link" to="/search">
               Search
             </NavLink>
-            
+            <NavLink className="nav-link" to="/paper">
+              Add Paper
+        </NavLink>
+
           </React.Fragment>
         )}
 
@@ -92,7 +95,7 @@ const NavBar = ({ user }) => {
 
         {user && (
           <React.Fragment>
-            
+
             <NavLink className="nav-link" to="/me">
               {user.name}
             </NavLink>

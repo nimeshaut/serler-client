@@ -26,7 +26,9 @@ import Search from "./components/search/search";
 import AdminDashboard from './components/admin/adminDashboard';
 import ModeratorDashboard from './components/moderator/moderatorDashboard';
 import AnalystDashboard from './components/analyst/analystDashboard';
-
+import AddPaper from './components/paper/addpaper';
+import AddManual from './components/paper/addmanual';
+import AddBibtex from './components/paper/addbibtex';
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -59,6 +61,9 @@ class App extends Component {
             <AdminRoute path="/Admin/genders" component={Genders} />
             // <ProtectedRoute path="/search/:id" component={UserForm} />
             <ProtectedRoute path="/search" component={Search} />
+            <Route path="/paper" component={AddPaper}></Route>
+            <Route path="/addmanual" component={AddManual}></Route>
+            <Route path="/addbibtex" component={AddBibtex}></Route>
             <UserRoute path="/User/dashboard" component={UserDashboard}></UserRoute>
             <AdminRoute path="/Admin/dashboard" component={AdminDashboard}></AdminRoute>
             <ModeratorRoute path="/Moderator/dashboard" component={ModeratorDashboard}></ModeratorRoute>
