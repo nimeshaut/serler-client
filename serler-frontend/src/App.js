@@ -16,6 +16,10 @@ import Roles from "./components/admin/roles/roles";
 import RoleForm from "./components/admin/roles/roleForm";
 import GenderForm from "./components/admin/genders/genderForm";
 import Genders from "./components/admin/genders/genders";
+import Status from "./components/admin/status/status";
+import Article from "./components/admin/articles/articles";
+import ArticleForm from "./components/admin/articles/articleForm";
+import ArticleAddForm from "./components/admin/articles/articleAddForm";
 import ProtectedRoute from "./components/common/protectedRoute";
 import AdminRoute from "./components/common/adminRoute";
 import UserRoute from './components/common/userRoute';
@@ -23,12 +27,11 @@ import AnalystRoute from './components/common/analystRoute';
 import ModeratorRoute from './components/common/moderatorRoute';
 import NotAuthorized from "./components/notAuthorized";
 import Search from "./components/search/search";
+import SearchArticleDetail from "./components/search/searchArticleDetail";
 import AdminDashboard from './components/admin/adminDashboard';
 import ModeratorDashboard from './components/moderator/moderatorDashboard';
 import AnalystDashboard from './components/analyst/analystDashboard';
-import AddPaper from './components/paper/addpaper';
-import AddManual from './components/paper/addmanual';
-import AddBibtex from './components/paper/addbibtex';
+
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -37,18 +40,17 @@ class App extends Component {
 
   componentDidMount() {
     const user = auth.getCurrentUser();
+    console.log("Current user info");
+    // console.log(user);
     this.setState({ user });
   }
   render() {
     const { user } = this.state;
-    
     return (
-      
       <React.Fragment>
-      
         <ToastContainer />
         <NavBar user={user} />
-        <main className="container-fluid">
+        <main className="container">
           <Switch>
             <Route path="/login" component={LoginForm}></Route>
             <Route path="/logout" component={Logout}></Route>
@@ -59,11 +61,12 @@ class App extends Component {
             <AdminRoute path="/Admin/roles" component={Roles} />
             <AdminRoute path="/Admin/genders/:id" component={GenderForm} />
             <AdminRoute path="/Admin/genders" component={Genders} />
-            // <ProtectedRoute path="/search/:id" component={UserForm} />
+            <AdminRoute path="/Admin/status" component={Status} />
+            <AdminRoute path="/Admin/article/publish" component={ArticleAddForm} />
+            <AdminRoute path="/Admin/article/:id" component={ArticleForm} />
+            <AdminRoute path="/Admin/article" component={Article} />
+            <ProtectedRoute path="/search/article/:id" component={SearchArticleDetail} />
             <ProtectedRoute path="/search" component={Search} />
-            <Route path="/paper" component={AddPaper}></Route>
-            <Route path="/addmanual" component={AddManual}></Route>
-            <Route path="/addbibtex" component={AddBibtex}></Route>
             <UserRoute path="/User/dashboard" component={UserDashboard}></UserRoute>
             <AdminRoute path="/Admin/dashboard" component={AdminDashboard}></AdminRoute>
             <ModeratorRoute path="/Moderator/dashboard" component={ModeratorDashboard}></ModeratorRoute>

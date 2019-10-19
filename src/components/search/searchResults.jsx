@@ -20,7 +20,7 @@ function SearchResults(props) {
             {props.results.map((result, index) => {
               return (
                 <tr key={result._id}>
-                  <td>{result.name}</td>
+                  <td>{result.papertitle}</td>
                   <td>Document Source Goes Here</td>
                   <td>{result.authors.join(", ")}</td>
                   <td>{result.tags.join(", ")}</td>
