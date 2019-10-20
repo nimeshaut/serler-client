@@ -31,7 +31,7 @@ import AddManual from './components/paper/addmanual';
 import AddBibtex from './components/paper/addbibtex';
 import ResearchMethodsForm from "./components/admin/researchMethods/researchMethodsForm";
 import ResearchMethods from "./components/admin/researchMethods/researchMethods";
-import ParticipantsForm from "./components/admin/participants/participantsForm";
+import ParticipantForm from "./components/admin/participants/participantsForm";
 import Participants from "./components/admin/participants/participants";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -63,7 +63,7 @@ class App extends Component {
             <AdminRoute path="/Admin/roles" component={Roles} />
             <AdminRoute path="/Admin/genders/:id" component={GenderForm} />
             <AdminRoute path="/Admin/genders" component={Genders} />
-			<AdminRoute path="/Admin/participants/:id" component={participantForm} />
+			<AdminRoute path="/Admin/participants/:id" component={ParticipantForm} />
 			<AdminRoute path="/Admin/participants" component={Participants} />
 			<AdminRoute path="/Admin/researchMethods/:id" component={ResearchMethodsForm} />
 			<AdminRoute path="/Admin/researchMethods" component={ResearchMethods} />
