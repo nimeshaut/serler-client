@@ -28,7 +28,7 @@ class researchMethodsTable extends Component {
   ];
 
   render() {
-    const { genders: researchMethods, onSort, sortColumn } = this.props;
+    const { researchMethods, onSort, sortColumn } = this.props;
 
     return (
       <Table
