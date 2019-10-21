@@ -35,20 +35,7 @@ class AddBibtex extends Component {
         const authortext = bibobj.author;
         console.log(authortext);
 
-        const authorsplit = authortext.split(" and ");
-
-        var authorsArray = new Array();
-
-        authorsplit.array.forEach(element => {
-            var split = element.split(",");
-            split.array.forEach(element =>{
-                var lastname = element[0];
-                var firstName = element[1];
-
-                var name = firstName+lastname;
-                authorsArray.add(name);
-            });
-        });
+        const authorsArray = authortext.split(" and ");
         
         this.setState({authors: authorsArray});
         this.setState({source: source});
