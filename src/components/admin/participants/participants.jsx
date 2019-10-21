@@ -2,39 +2,45 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import _ from "lodash";
-import RolesTable from "./rolesTable";
+import ParticipantsTable from "./participatantsTable";
+
 import Pagination from "../../common/pagination";
 import { paginate } from "../../../utils/paginate";
-import { getRoles, deleteRole } from "../../../services/roleService";
+import {
+  getParticipants,
+  deleteParticipant
+} from "../../../services/participantService";
 
-class Roles extends Component {
+class Participants extends Component {
   state = {
-    roles: [],
+    participants: [],
     currentPage: 1,
     pageSize: 5,
     sortColumn: { path: "name", order: "asc" }
   };
 
   async componentDidMount() {
-    const { data: roles } = await getRoles();
-    this.setState({ roles });
+    const { data: participants } = await getParticipants();
+    this.setState({ participants });
   }
 
-  handleDelete = async role => {
-    const originalRoles = this.state.roles;
-    const roles = originalRoles.filter(u => u._id !== role._id);
-    this.setState({ roles });
+  handleDelete = async participant => {
+    const originalParticipants = this.state.participants;
+    const participants = originalParticipants.filter(
+      u => u._id !== participant._id
+    );
+    this.setState({ participants });
     try {
-      await deleteRole(role._id);
+      await deleteParticipant(participant._id);
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
-        toast.error("This role has already been deleted");
+        toast.error("This participant has already been deleted");
       if (ex.response && ex.response.status === 401)
         toast.error("Access Denied");
       if (ex.response && ex.response.status === 403)
         toast.error("Access Denied");
       if (ex.response && ex.response.status === 400) toast.error("Bad Request");
-      this.setState({ roles: originalRoles });
+      this.setState({ originalParticipants });
     }
   };
 
@@ -47,36 +53,43 @@ class Roles extends Component {
   };
 
   getPagedData = () => {
-    const { pageSize, currentPage, sortColumn, roles: allRoles } = this.state;
-    const sorted = _.orderBy(allRoles, [sortColumn.path], [sortColumn.order]);
-    const roles = paginate(sorted, currentPage, pageSize);
-    return { totalCount: allRoles.length, data: roles };
+    const {
+      pageSize,
+      currentPage,
+      sortColumn,
+      participants: allParticipants
+    } = this.state;
+    const sorted = _.orderBy(
+      allParticipants,
+      [sortColumn.path],
+      [sortColumn.order]
+    );
+    const participants = paginate(sorted, currentPage, pageSize);
+    return { totalCount: allParticipants.length, data: participants };
   };
 
   render() {
-    const { length: rolesCount } = this.state.roles;
+    
     const { pageSize, currentPage, sortColumn } = this.state;
-
-    if (rolesCount === 0) return <p>There are no roles in the database</p>;
 
     const { totalCount, data } = this.getPagedData();
 
     return (
       <React.Fragment>
         <Link
-          to="/admin/roles/new"
+          to="/admin/participants/new"
           className="btn btn-primary"
           style={{ marginBottom: 20 }}
         >
-          New Role
+          New Participant
         </Link>
-        <p> Showing {totalCount} roles from the database</p>
-        <RolesTable
-          roles={data}
+        <p> Showing {totalCount} participants from the database</p>
+        <ParticipantsTable
+          participants={data}
           sortColumn={sortColumn}
           onDelete={this.handleDelete}
           onSort={this.handleSort}
-        ></RolesTable>
+        ></ParticipantsTable>
         <Pagination
           itemsCount={totalCount}
           pageSize={pageSize}
@@ -88,4 +101,4 @@ class Roles extends Component {
   }
 }
 
-export default Roles;
+export default Participants;

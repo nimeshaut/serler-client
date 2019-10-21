@@ -2,39 +2,39 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import _ from "lodash";
-import GendersTable from "./gendersTable";
+import ResearchMethodsTable from "./researchMethodsTable";
 import Pagination from "../../common/pagination";
 import { paginate } from "../../../utils/paginate";
-import { getGenders, deleteGender } from "../../../services/genderService";
+import { getResearchMethods, deleteResearchMethod } from "../../../services/researchMethodService";
 
 class Genders extends Component {
   state = {
-    genders: [],
+    researchMethods: [],
     currentPage: 1,
     pageSize: 5,
     sortColumn: { path: "name", order: "asc" }
   };
 
   async componentDidMount() {
-    const { data: genders } = await getGenders();
-    this.setState({ genders });
+    const { data: researchMethods } = await getResearchMethods();
+    this.setState({ researchMethods});
   }
 
-  handleDelete = async gender => {
-    const originalGenders = this.state.genders;
-    const genders = originalGenders.filter(u => u._id !== gender._id);
-    this.setState({ genders });
+  handleDelete = async researchMethod => {
+    const originalResearchMethods = this.state.researchMethods;
+    const researchMethods = originalResearchMethods.filter(u => u._id !== researchMethod._id);
+    this.setState({ researchMethods });
     try {
-      await deleteGender(gender._id);
+      await deleteResearchMethod(researchMethod._id);
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
-        toast.error("This gender has already been deleted");
+        toast.error("This research method has already been deleted");
       if (ex.response && ex.response.status === 401)
         toast.error("Access Denied");
       if (ex.response && ex.response.status === 403)
         toast.error("Access Denied");
       if (ex.response && ex.response.status === 400) toast.error("Bad Request");
-      this.setState({ genders: originalGenders });
+      this.setState({ researchMethods: originalResearchMethods });
     }
   };
 
@@ -51,37 +51,37 @@ class Genders extends Component {
       pageSize,
       currentPage,
       sortColumn,
-      genders: allGenders
+      researchMethods: allResearchMethods
     } = this.state;
-    const sorted = _.orderBy(allGenders, [sortColumn.path], [sortColumn.order]);
-    const genders = paginate(sorted, currentPage, pageSize);
-    return { totalCount: allGenders.length, data: genders };
+    const sorted = _.orderBy(allResearchMethods, [sortColumn.path], [sortColumn.order]);
+    const researchMethods = paginate(sorted, currentPage, pageSize);
+    return { totalCount: allResearchMethods.length, data: researchMethods };
   };
 
   render() {
-    const { length: gendersCount } = this.state.genders;
+    const { length: researchMethodsCount } = this.state.researchMethods;
     const { pageSize, currentPage, sortColumn } = this.state;
 
-    if (gendersCount === 0) return <p>There are no genders in the database</p>;
+    // if (researchMethodsCount === 0) return <p>There are no research methods in the database</p>;
 
     const { totalCount, data } = this.getPagedData();
 
     return (
       <React.Fragment>
         <Link
-          to="/admin/genders/new"
+          to="/admin/researchmethods/new"
           className="btn btn-primary"
           style={{ marginBottom: 20 }}
         >
-          New Gender
+          New Research Method
         </Link>
-        <p> Showing {totalCount} genders from the database</p>
-        <GendersTable
-          genders={data}
+        <p> Showing {totalCount} research methods from the database</p>
+        <ResearchMethodsTable
+          researchMethods={data}
           sortColumn={sortColumn}
           onDelete={this.handleDelete}
           onSort={this.handleSort}
-        ></GendersTable>
+        ></ResearchMethodsTable>
         <Pagination
           itemsCount={totalCount}
           pageSize={pageSize}

@@ -1,9 +1,9 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "../../common/form";
-import {getGender, saveGender } from "../../../services/genderService";
+import {getParticipant, saveParticipant} from "../../../services/participantService";
 
-class GenderForm extends Form {
+class ParticipantForm extends Form {
   state = {
     data: {
       name: ""
@@ -19,12 +19,12 @@ class GenderForm extends Form {
       .label("Name")
   };
 
-  async populateGender() {
+  async populateParticipant() {
     try {
-      const genderId = this.props.match.params.id;
-      if (genderId === "new") return;
-      const { data: gender } = await getGender(genderId);
-      this.setState({ data: this.mapToViewModel(gender) });
+      const participantId = this.props.match.params.id;
+      if (participantId === "new") return;
+      const { data: participant } = await getParticipant(participantId);
+      this.setState({ data: this.mapToViewModel(participant) });
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
         this.props.history.replace("/not-found");
@@ -32,26 +32,26 @@ class GenderForm extends Form {
   }
 
   async componentDidMount() {
-    await this.populateGender();
+    await this.populateParticipant();
   }
 
-  mapToViewModel(gender) {
+  mapToViewModel(participant) {
     return {
-      _id: gender._id,
-      name: gender.name
+      _id: participant._id,
+      name: participant.name
     };
   }
 
   doSubmit = async () => {
-    await saveGender(this.state.data);
+    await saveParticipant(this.state.data);
 
-    this.props.history.push("/admin/genders");
+    this.props.history.push("/admin/participants");
   };
 
   render() {
     return (
       <div>
-        <h1>Gender Form</h1>
+        <h1>Participants Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("name", "Name")}
 
@@ -62,4 +62,4 @@ class GenderForm extends Form {
   }
 }
 
-export default GenderForm;
+export default ParticipantForm;

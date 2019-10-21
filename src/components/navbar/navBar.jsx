@@ -62,6 +62,12 @@ const NavBar = ({ user }) => {
             <NavLink className="nav-link" to="/admin/genders">
               Genders
             </NavLink>
+			<NavLink className="nav-link" to="/admin/Participants">
+				Participants
+			</NavLink>
+			<NavLink className="nav-link" to="/admin/researchMethods">
+				Research Methods
+			</NavLink>
           </React.Fragment>
         )}
         {user && user.role === "User" && (
