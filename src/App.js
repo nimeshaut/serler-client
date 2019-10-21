@@ -33,6 +33,8 @@ import ResearchMethodsForm from "./components/admin/researchMethods/researchMeth
 import ResearchMethods from "./components/admin/researchMethods/researchMethods";
 import ParticipantForm from "./components/admin/participants/participantsForm";
 import Participants from "./components/admin/participants/participants";
+import TaskMethodologiesForm from "./components/admin/taskMethodologies/taskMethodologiesForm";
+import TaskMethodologies from "./components/admin/taskMethodologies/taskMethodologies";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
@@ -63,7 +65,12 @@ class App extends Component {
             <AdminRoute path="/Admin/roles" component={Roles} />
             <AdminRoute path="/Admin/genders/:id" component={GenderForm} />
             <AdminRoute path="/Admin/genders" component={Genders} />
+
+			<AdminRoute path="/Admin/taskMethodologies/:id" component={TaskMethodologiesForm} />
+			<AdminRoute path="/Admin/taskMethodologies" component={TaskMethodologies} />
+			
 			<AdminRoute path="/Admin/participants/:id" component={ParticipantForm} />
+
 			<AdminRoute path="/Admin/participants" component={Participants} />
 			<AdminRoute path="/Admin/researchMethods/:id" component={ResearchMethodsForm} />
 			<AdminRoute path="/Admin/researchMethods" component={ResearchMethods} />

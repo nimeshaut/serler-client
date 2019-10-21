@@ -62,6 +62,9 @@ const NavBar = ({ user }) => {
             <NavLink className="nav-link" to="/admin/genders">
               Genders
             </NavLink>
+			<NavLink className="nav-link" to="/admin/TaskMethodologies">
+				Task Methodologies
+			</NavLink>
 			<NavLink className="nav-link" to="/admin/Participants">
 				Participants
 			</NavLink>
