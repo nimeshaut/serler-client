@@ -92,16 +92,16 @@ class AddBibtex extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div class="form-group">
                         <label for="papertitle">Title</label>
-                        <input type="text" value={papertitle} onChange={this.onChange} class="form-control" id="papertitle" placeholder="Paper Title"></input>
+                        <input type="text" value={papertitle} onChange={this.onChange} class="form-control" id="papertitle" placeholder="Paper Title *"></input>
                     </div>
                     <div class="form-group">
                             <label for="author">Author</label>
-                            <input type="text" value={authors} onChange={this.onChange} class="form-control" id="authors" placeholder="Author"></input>
+                            <input type="text" value={authors} onChange={this.onChange} class="form-control" id="authors" placeholder="Author *"></input>
                     </div>
                     <div class="form-row">
                         <div class="col-7">
                             <label for="source">Source</label>
-                            <input type="text" value={source} onChange={this.onChange} class="form-control" id="source" placeholder="Source"></input>
+                            <input type="text" value={source} onChange={this.onChange} class="form-control" id="source" placeholder="Source *"></input>
                         </div>
                         <div class="col">
                             <label for="year">Publisher</label>
@@ -124,7 +124,7 @@ class AddBibtex extends Component {
                         </div>
                         <div class="col">
                             <label for="year">Year</label>
-                            <input type="text" value={year} onChange={this.onChange} class="form-control" id="year" placeholder="Year"></input>
+                            <input type="text" value={year} onChange={this.onChange} class="form-control" id="year" placeholder="Year *"></input>
                         </div>
                     </div>
                     <br></br>
