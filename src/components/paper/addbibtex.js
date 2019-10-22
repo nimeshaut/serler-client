@@ -55,7 +55,7 @@ class AddBibtex extends Component {
         e.preventDefault();
         const { papertitle, authors, year, source, publisher, volume, number, pages, link, noOfLikes } = this.state;
 
-        axios.post('http://localhost:8080/paper/addmanual', { papertitle, authors, year, source, publisher, volume, number, pages, link, noOfLikes })
+        axios.post('https://serler-api.herokuapp.com/paper/addmanual', { papertitle, authors, year, source, publisher, volume, number, pages, link, noOfLikes })
             .then((result) => {
             });
             this.props.history.push('/paper');
