@@ -20,3 +20,11 @@ code {
 .navbar{
   margin-bottom: 30px;
 }
+
+ul.select-list{
+  color:red;
+}
+
+.select-item{
+  text-align: left !important;
+}

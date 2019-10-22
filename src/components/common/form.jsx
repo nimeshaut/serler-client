@@ -3,6 +3,9 @@ import Joi from "joi-browser";
 import Input from "./input";
 import Select from "./select";
 import SimpleInput from "./simpleInput";
+import SelectMulti from "./selectMulti";
+
+import event from "events";
 
 class Form extends Component {
   state = {
@@ -49,6 +52,35 @@ class Form extends Component {
     this.setState({ data, errors });
   };
 
+  handleMultiChange = (selected, reference) => {
+    const errors = { ...this.state.errors };
+    debugger;
+
+    var elementName = reference.current.id.replace("Ids", "");
+    const properName =
+      "selected" + elementName.charAt(0).toUpperCase() + elementName.slice(1);
+    
+    // const selectedRoles = this.state.roles.filter(role =>
+    //   selected.includes(role._id)
+    // );
+
+    const selectedValue = this.state[elementName + "s"].filter(tempVal =>
+      selected.includes(tempVal._id)
+    );
+
+    var newstate = {};
+    newstate[properName + "s"] = selectedValue;
+    newstate["errors"] = errors;
+    //this.setState(newstate);
+    const data = { ...this.state.data };
+    data[properName + "s"] = selectedValue;
+
+    this.setState({ data, errors });
+
+    var aa = this.state;
+
+    //this.setState({ selectedRoles, errors });
+  };
   renderButton(label) {
     return (
       <button disabled={this.validate()} className="btn btn-primary">
@@ -68,6 +100,23 @@ class Form extends Component {
         options={options}
         onChange={this.handleChange}
         error={errors[name]}
+      />
+    );
+  }
+
+  renderMultiSelect(name, label, options, selected) {
+    const { data, errors } = this.state;
+
+    return (
+      <SelectMulti
+        name={name}
+        value={data[name]}
+        label={label}
+        options={options}
+        selected={selected}
+        onChange={this.handleMultiChange}
+        error={errors[name]}
+        ref={this.multiRef}
       />
     );
   }
