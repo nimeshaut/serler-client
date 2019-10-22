@@ -78,7 +78,7 @@ class AddBibtex extends Component {
             link, source, noOfLikes} = this.state;
         return (
             <div>
-                <h1>Add Paper Manually</h1>
+                <h1>Add Paper Using Bibtex</h1>
                 <div>
                     <form>
                         <div class="text-area">
@@ -130,7 +130,7 @@ class AddBibtex extends Component {
                     <br></br>
                     <div class="form-group">
                         <label for="link">Link</label>
-                        <input type="text" value={link} onChange={this.onChange} class="form-control" id="link" placeholder="Link"></input>
+                        <input type="text" value={link} onChange={this.onChange} class="form-control" id="link" placeholder="Link *"></input>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
