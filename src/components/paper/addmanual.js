@@ -53,12 +53,12 @@ class AddManual extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div class="form-group">
                         <label for="papertitle">Title</label>
-                        <input type="text" value={papertitle} onChange={this.onChange} class="form-control" id="papertitle" placeholder="Paper Title"></input>
+                        <input type="text" value={papertitle} onChange={this.onChange} class="form-control" id="papertitle" placeholder="Paper Title *"></input>
                     </div>
                     <form id="author-form" className="form">
                         <div className="form-group">
                             <label for="author">Author (Last Name, First Name)</label>
-                            <input class="form-control" id="author" value={author} onChange={this.onChange} placeholder="Author"></input>
+                            <input class="form-control" id="author" value={author} onChange={this.onChange} placeholder="Author *"></input>
                         </div>
                         <button onClick={(e) => {this.addAuthor(e)}} className="btn-primary">Add</button>
                     </form>
@@ -78,7 +78,7 @@ class AddManual extends Component {
                     <div class="form-row">
                         <div class="col-7">
                             <label for="source">Source</label>
-                            <input type="text" value={source} onChange={this.onChange} class="form-control" id="source" placeholder="Source"></input>
+                            <input type="text" value={source} onChange={this.onChange} class="form-control" id="source" placeholder="Source *"></input>
                         </div>
                         <div class="col">
                             <label for="year">Publisher</label>
@@ -101,13 +101,13 @@ class AddManual extends Component {
                         </div>
                         <div class="col">
                             <label for="year">Year</label>
-                            <input type="text" value={year} onChange={this.onChange} class="form-control" id="year" placeholder="Year"></input>
+                            <input type="text" value={year} onChange={this.onChange} class="form-control" id="year" placeholder="Year *"></input>
                         </div>
                     </div>
                     <br></br>
                     <div class="form-group">
                         <label for="link">Link</label>
-                        <input type="text" value={link} onChange={this.onChange} class="form-control" id="link" placeholder="Link"></input>
+                        <input type="text" value={link} onChange={this.onChange} class="form-control" id="link" placeholder="Link *"></input>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
